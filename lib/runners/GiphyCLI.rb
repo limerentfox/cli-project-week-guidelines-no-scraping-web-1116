@@ -10,50 +10,67 @@ class GiphyCLI
   end
 
   def run
-    puts "What do you want to do?"
     help
-    print "Please enter a keyword to search: "
+    print "What do you want to do? "
     input = get_user_input
     if input == "help"
       help
     elsif input == "exit"
       exit
     elsif input == 'random'
-      random(input)
+      print "Please enter a keyword to search: "
+      random_input = get_user_input
+      random(random_input)
+
+
+
+    #   random(input)
     elsif input == 'allll'
-      allll
-    else
-      search(input)
+      print "Please enter a keyword to search: "
+      all_input = get_user_input
+      allll(all_input)
+
     end
+
+
     run
+
+
+
+    # print "Please enter a keyword to search: " help
+    # input = get_user_input
+    # run
   end
 
-  def search(input)
+  def populate_gif_class(input)
     search_term = input.split(" ").join("%20").downcase
     puts "Your search term was #{input.capitalize}, I am searching..."
     url = "http://api.giphy.com/v1/gifs/search?q=#{search_term}&api_key=dc6zaTOxFJmzC"
 
     gifs = GiphyApiAdapter.new(url).make_gifs
 
-    list
+    #list
   end
 
   def help
-    puts "Type 'random' to get a random gif from your keyword search"
-    puts "Type 'allll' to get ALLLLLLLLL of your gifffs"
-    puts "Type 'exit' to exit"
-    puts "Type 'help' to view this menu again"
-    puts "Type anything else to search for morrrrreeee gifs!!!!"
+    puts
+    puts "Commands:"
+    puts "  • random : search for a random gif from Giphy"
+    puts "  • allll  : to get ALLLLLLLLL the info about ALLLLLLL the gifffs"
+    puts "  • exit   : goodbye, friends"
+    puts "  • help   : see this message again"
+    puts
   end
 
   def random(input)
-    search(input)
-    Gif.random_gif
+    populate_gif_class(input)
+    Launchy.open(Gif.random_gif.url)
+
     Gif.reset
   end
 
-  def allll
-    search(input)
+  def allll(input)
+    populate_gif_class(input)
     Gif.present_all
     Gif.reset
   end

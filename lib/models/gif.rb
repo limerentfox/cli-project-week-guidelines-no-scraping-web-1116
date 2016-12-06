@@ -17,12 +17,15 @@ class Gif
     gifs = self.all
     gifs.each do |gif|
       puts "-----------------------------"
-      puts "ID: #{gif.id}"
-      puts "URL: #{gif.url}"
-      puts "SOURCE: #{gif.source}"
-      puts "-----------------------------"
+      puts "  • ID     : #{gif.id}"
+      puts "  • URL    : #{gif.url}"
+      puts "  • SOURCE : #{gif.source}"
+
+
   end
+      puts
       puts "WOW that is a LOT of gifs! #{gifs.count} to be exact"
+      puts
   end
 
   def self.reset
@@ -32,11 +35,12 @@ class Gif
   def self.random_gif
     gifs = self.all
     random_gif = gifs.sample
-      puts "-----------------------------"
-      puts "ID: #{random_gif.id}"
-      puts "URL: #{random_gif.url}"
-      puts "SOURCE: #{random_gif.source}"
-      puts "-----------------------------"
+      puts "Attempting to open:"
+      puts "  • ID     : #{random_gif.id}"
+      puts "  • URL    : #{random_gif.url}"
+      puts "  • SOURCE : #{random_gif.source}"
+      puts
+    random_gif
   end
 
     def self.count
