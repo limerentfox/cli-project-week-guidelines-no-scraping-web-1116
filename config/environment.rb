@@ -2,6 +2,8 @@ require 'bundler/setup'
 Bundler.require(:default, :development)
 $: << '.'
 
+APIKEY = "dc6zaTOxFJmzC"
+
 Dir["lib/concerns/*.rb"].each {|f| require f}
 Dir["lib/models/*.rb"].each {|f| require f}
 Dir["lib/data_fetchers/*.rb"].each {|f| require f}

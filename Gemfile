@@ -5,6 +5,8 @@ group "development" do
   gem "pry-nav"
   gem "rest-client"
   gem "launchy"
+  gem "lolcat"
+
 end
 
 group "test" do
