@@ -16,26 +16,27 @@ class GiphyCLI
 
 
   def run
-    help
-    self.class.color_pts("What do you want to do? ")
-    input = get_user_input
-    if input == "exit" || input == "e"
-      exit
-    elsif input == 'random' || input == "r"
-      print "Please enter a keyword to search: "
-      random_input = get_user_input
-      random(random_input)
-    elsif input == 'allll' || input == "a"
-      print "Please enter a keyword to search: "
-      all_input = get_user_input
-      allll(all_input)
-    # elsif input == "help" || input == "h"
-    #     help
-
+    while true
+      help
+      self.class.color_pts("What do you want to do? ")
+      input = get_user_input
+      parse_input(input)
+      case input
+      when "exit","e"
+        exit
+        break
+      when "random","r"
+        print "Please enter a keyword to search: "
+        random_input = get_user_input
+        random(random_input)
+      when "allll", "a"
+        print "Please enter a keyword to search: "
+        all_input = get_user_input
+        allll(all_input)
+      else
+        puts "Sorry, invalid input"
+      end
     end
-
-
-    run
 
 
 
@@ -79,11 +80,14 @@ class GiphyCLI
     Gif.reset
   end
 
-  def list
-    puts "Thank you for your patience. I found this on Giphy:"
-      Gif.present_all
-      Gif.reset
-    end
+
+  def parse_input(input)
+    input.downcase.gsub(' ', '+')
+  end
+
+  def exit
+    puts "Goodbye my friend"
+  end
 
 
 
